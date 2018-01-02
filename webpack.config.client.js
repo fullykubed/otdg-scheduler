@@ -118,9 +118,7 @@ module.exports = {
         new webpack.DefinePlugin({
                                      'process.env.NODE_ENV': JSON.stringify('development')
                                  }),
-        // new webpack.ProvidePlugin({
-        //                               Materialize: 'Materialize2'
-        //                           }),
+
         new webpack.optimize.ModuleConcatenationPlugin(),
         new HtmlWebpackPlugin({
                                   template: path.join(__dirname, 'client', 'index.html')

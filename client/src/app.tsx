@@ -1,32 +1,14 @@
 import * as React from 'react';
 import {render} from 'react-dom';
-
-import {process} from './handler';
 import * as Radium from 'radium';
 
-declare const Materialize: any;
-
-const inputFormStyles = {
-    base: {
-        margin: "50px auto 0 auto",
-        width: "350px"
-    }
-};
+import {process} from './handler';
 
 
-const downloadButtonStyles = {
 
-  base: {
-      display: "block",
-      margin: "10px auto",
-      maxWidth: "150px",
-  },
-    header: {
-      margin: "50px auto 0",
-        textAlign: "center"
-    }
-};
-
+/************************
+ * ALL UI is contained in the below React Component
+ ************************/
 
 @Radium
 class App extends React.Component<any, any> {
@@ -45,11 +27,16 @@ class App extends React.Component<any, any> {
 
     }
 
+    /************************
+     * Event handler that is fired as soon as a file is selected
+     ************************/
+
     processFile(event){
         let reader = new FileReader();
         reader.readAsBinaryString(event.target.files[0]);
         reader.onload = (e: any) => {
 
+            //reset the file selection form so that user can select another file
             let form:any = document.getElementById("uploader");
             form.reset();
 
@@ -113,6 +100,7 @@ class App extends React.Component<any, any> {
                     <h5>Schedule_Code</h5>
                     <ul className="browser-default">
                         <li>The first column must contain the different types of sales leads.</li>
+                        <li>The second column contains type aliases that may be used in place of the full type name on the "Potential" sheet.</li>
                         <li>Milestones must come in pairs of two columns.</li>
                         <ul className="browser-default">
                             <li>The first row of the pair must contain the milestone name.</li>
@@ -148,9 +136,40 @@ class App extends React.Component<any, any> {
     }
 }
 
+/************************
+ * Stylings
+ ************************/
+
+const inputFormStyles = {
+    base: {
+        margin: "50px auto 0 auto",
+        width: "350px"
+    }
+};
+
+
+const downloadButtonStyles = {
+
+    base: {
+        display: "block",
+        margin: "10px auto",
+        maxWidth: "150px",
+    },
+    header: {
+        margin: "50px auto 0",
+        textAlign: "center"
+    }
+};
+
+/************************
+ * Application Entry Point
+ ************************/
+
 render(
     <App/>,
     document.getElementById('root')
 );
+
+
 
 
