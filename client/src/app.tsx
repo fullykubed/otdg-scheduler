@@ -79,7 +79,7 @@ class App extends React.Component<any, any> {
                        href={"data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + this.state.data}
                        download="schedule.xlsx">
 
-                        Save
+                        Download
                     </a>
                     </div>
                     : ""}
@@ -95,7 +95,7 @@ class App extends React.Component<any, any> {
                     <h4>Formatting Requirements</h4>
                     <ul className="browser-default">
                         <li>The file must be an Excel file.</li>
-                        <li>The file must contain the worksheets "Schedule_Code" and "Potential" containing the schedule paramaters and inputs respectively.</li>
+                        <li>The file must contain the worksheets "Schedule_Code", "Sales_Alias", and "Potential" containing the schedule paramaters, sales person name mappings, and inputs respectively.</li>
                     </ul>
                     <h5>Schedule_Code</h5>
                     <ul className="browser-default">
@@ -111,6 +111,13 @@ class App extends React.Component<any, any> {
                                 <li>Specific Day = ISO number of the specific day of the week that the milestone must occer, 1 (Monday) - 7 (Sunday). Leaving this blank means that the milestone may occur on any weekday.</li>
                             </ul>
                         </ul>
+                        <li>Output rows are sorted first by the the Lead Type (in the order given on the Schedule_Code sheet) and then by presenation date.</li>
+                        <li>The default Lead Type is the first Lead Type on the Schedule_COde sheet.</li>
+                    </ul>
+                    <h5>Sales_Alias</h5>
+                    <ul className="browser-default">
+                        <li>The first row (headers) is ignored.</li>
+                        <li>All subsequent rows are mappings between shorthand salesperson names and the full name. Either can be used on the "Potential" sheet.</li>
                     </ul>
                     <h5>Potential</h5>
                     <ul className="browser-default">
@@ -118,10 +125,12 @@ class App extends React.Component<any, any> {
                         <li>It will use the following columns as inputs:</li>
                         <ul className="browser-default">
                             <li>B = Salesperson (or alias)</li>
-                            <li>C = Lead type</li>
+                            <li>C = Lead Type</li>
                             <li>D = Client</li>
                             <li>G = Lot</li>
                             <li>L = Presenation Date</li>
+                            <li>O = Shot Grade</li>
+                            <li>P = Build Type</li>
                         </ul>
                     </ul>
                     <a className="waves-effect waves-light btn green darken-4"
